@@ -12,7 +12,7 @@ class SuccessHandling {
         const val SUCCESS_TASK_CREATED = "created"
         const val SUCCESS_TASK_DELETED = "deleted"
         const val SUCCESS_TASK_UPDATED = "updated"
-
+        const val SUCCESS_REPORT_CREATED = "created"
         const val SUCCESS_TASK_DOES_NOT_EXIST_IN_CACHE = "Task does not exist in the cache."
         const val SUCCESS_TASK_EXISTS_ON_SERVER = "Task exists on the server and in the cache."
 

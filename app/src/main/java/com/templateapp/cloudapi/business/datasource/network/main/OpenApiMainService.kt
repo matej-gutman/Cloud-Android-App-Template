@@ -2,6 +2,7 @@ package com.templateapp.cloudapi.business.datasource.network.main
 
 import com.templateapp.cloudapi.business.datasource.network.GenericResponse
 import com.templateapp.cloudapi.business.datasource.network.main.responses.*
+import com.templateapp.cloudapi.business.domain.models.Report
 import com.templateapp.cloudapi.business.domain.models.Role
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -125,5 +126,30 @@ interface OpenApiMainService {
         @Header("Authorization") authorization: String,
     ): RolesResponse
 
+
+    @Multipart
+    @POST("addReport")
+    suspend fun addReport(
+        @Header("Authorization") authorization: String,
+        @Part("title") title: RequestBody,
+        @Part image: MultipartBody.Part?
+    ): ReportCreateUpdateResponse
+
+
+    /* Get a list of all the tasks */
+    @GET("all_reports")
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    suspend fun searchListReports(
+        @Header("Authorization") authorization: String,
+        @Query("limit") limit: Int,
+        //@Query("skip") skip: Int,
+    ): ReportListSearchResponse
+
+
+    @GET("reports/{id}")
+    suspend fun getReport(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: String,
+    ): ReportDto?
 }
 

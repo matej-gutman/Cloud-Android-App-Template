@@ -6,4 +6,5 @@
     <include app:graph="@navigation/nav_task"/>
     <include app:graph="@navigation/nav_create_task"/>
     <include app:graph="@navigation/nav_account"/>
+    <include app:graph="@navigation/nav_report"/>
 </navigation>

@@ -96,9 +96,7 @@ constructor(
 
                     println(account.role.title)
 
-                    println("dddddd")
                     if(account.role.title == "Admin"){
-                        println("jfsbfjsbjdfh")
                        onAdmin()
                     }
                 }

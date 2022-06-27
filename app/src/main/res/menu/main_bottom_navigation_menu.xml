@@ -16,4 +16,8 @@
           android:title="@string/account"
           android:icon="@drawable/ic_account_circle_white_24dp"/>
 
+    <item android:id="@+id/nav_report"
+            android:title="report"
+            android:icon="@drawable/filter"/>
+
 </menu>
