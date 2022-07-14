@@ -97,7 +97,7 @@ class CreateReportFragment : BaseReportFragment() {
                 uri = state.uri,
             )
             if (state.onPublishSuccess) {
-                findNavController().popBackStack(R.id.taskFragment, false)
+                findNavController().popBackStack(R.id.reportFragment, false)
             }
         })
     }

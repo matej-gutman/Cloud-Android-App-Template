@@ -80,7 +80,7 @@ class ReportFragment : BaseReportFragment(),
                 })
 
             recyclerAdapter?.apply {
-                submitList(tasksList = state.reportList)
+                submitList(reportList = state.reportList)
             }
         })
     }

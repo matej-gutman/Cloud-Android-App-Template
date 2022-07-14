@@ -87,8 +87,8 @@ class ReportListAdapter(
         return differ.currentList.size
     }
 
-    fun submitList(tasksList: List<Report>?, ){
-        val newList = tasksList?.toMutableList()
+    fun submitList(reportList: List<Report>?, ){
+        val newList = reportList?.toMutableList()
         differ.submitList(newList)
     }
 
@@ -106,7 +106,7 @@ class ReportListAdapter(
 */
             Glide.with(binding.root)
                 .setDefaultRequestOptions(requestOptions)
-                .load(BASE_URL + item.image)
+                .load("http://192.168.64.149:3000" + item.image)
                 .transition(withCrossFade())
                 .into(binding.reportImage)
             binding.reportTitle.text = item.title

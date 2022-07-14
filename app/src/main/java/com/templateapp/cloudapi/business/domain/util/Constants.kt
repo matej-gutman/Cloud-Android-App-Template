@@ -4,7 +4,7 @@ class Constants {
 
     companion object{
 
-        const val BASE_URL = "http://127.0.0.1:3000/"
+        const val BASE_URL = "http://192.168.64.149:3000"
         const val PASSWORD_RESET_URL: String = "http://127.0.0.1:3000/passwordresetform"
         const val REGISTER_ADMIN_URL: String = "http://127.0.0.1:3000/registeruser"
 
