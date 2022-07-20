@@ -93,7 +93,7 @@ class ViewTaskFragment : BaseTaskFragment()
     private fun setTaskProperties(task: Task){
         Glide.with(this)
             .setDefaultRequestOptions(requestOptions)
-            .load(BASE_URL + task.image)
+            .load("http://appcloud-env.eba-theyd4uu.eu-central-1.elasticbeanstalk.com/" + task.image)
             .into(binding.taskImage)
         binding.taskTitle.setText(task.title)
         binding.taskOwner.setText(task.username)

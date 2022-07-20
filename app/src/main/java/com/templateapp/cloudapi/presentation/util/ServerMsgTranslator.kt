@@ -3,7 +3,11 @@ package com.templateapp.cloudapi.presentation.util
 import android.app.Application
 import com.templateapp.cloudapi.R
 import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.ERROR_ADMIN_ALREADY_EXISTS
+import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.ERROR_ALREADY_SENT_REGISTRATION_EMAIL
+import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.ERROR_AUTHENTICATE
+import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.ERROR_CANT_REGISTER
 import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.ERROR_EMAIL_EXISTS
+import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.ERROR_FILL_ALL_FIELDS
 import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.ERROR_INCORRECT_CURRENT_PASSWORD
 import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.ERROR_INCORRECT_PASSWORDS_MISMATCH
 import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.ERROR_INVALID_EMAIL
@@ -19,6 +23,7 @@ import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.ERR
 import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.ERROR_SERVER_INTERNAL
 import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.ERROR_TASK_DOES_NOT_EXIST_ON_THE_SERVER
 import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.ERROR_UNABLE_TO_AUTHENTICATE
+import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.ERROR_USER_DOES_NOT_EXIST_ON_THE_SERVER
 import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.RESPONSE_PASSWORD_RESET_SUCCESS
 import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.RESPONSE_PASSWORD_UPDATE_SUCCESS
 import com.templateapp.cloudapi.presentation.util.ServerMsgStrings.Companion.RESPONSE_TASK_CREATED_SUCCESS
@@ -56,6 +61,13 @@ class ServerMsgTranslator (
         ERROR_NO_QUERY_PAGINATION_RESULT to application.getString(R.string.error_no_query_pagination_result),
         ERROR_TASK_DOES_NOT_EXIST_ON_THE_SERVER to application.getString(R.string.error_task_does_not_exist_on_the_server),
         ERROR_INVALID_UPDATES to application.getString(R.string.error_invalid_updates),
+        ERROR_USER_DOES_NOT_EXIST_ON_THE_SERVER to application.getString(R.string.error_user_does_not_exist_on_the_server),
+        ERROR_ADMIN_ALREADY_EXISTS to application.getString(R.string.error_admin_already_exists),
+        ERROR_ROLE_NOT_ADMIN to application.getString(R.string.error_role_not_admin),
+        ERROR_CANT_REGISTER to application.getString(R.string.error_cant_register),
+        ERROR_ALREADY_SENT_REGISTRATION_EMAIL to application.getString(R.string.error_already_sent_registration_email),
+        ERROR_FILL_ALL_FIELDS to application.getString(R.string.error_fill_all_fields),
+
 
         ERROR_SERVER_INTERNAL to application.getString(R.string.error_internal_server_error),
 
@@ -72,6 +84,9 @@ class ServerMsgTranslator (
 
         ERROR_ADMIN_ALREADY_EXISTS to application.getString(R.string.error_admin_already_exists),
         ERROR_ROLE_NOT_ADMIN to application.getString(R.string.error_role_not_admin),
+        ERROR_AUTHENTICATE to application.getString(R.string.please_authenticate),
+
+
 
 
 
@@ -93,6 +108,7 @@ class ServerMsgTranslator (
 
     /* Return translations. This function will append [NO TRANSLATION] if no entry found. */
     fun getTranslation(from: String?): String{
+        System.err.println(from)
         from?.let{
             translationsStrings.get(from)?.let { return it }; return "[NO TRANSLATION] $from"
         }

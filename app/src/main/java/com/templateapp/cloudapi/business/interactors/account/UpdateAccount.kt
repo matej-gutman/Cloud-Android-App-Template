@@ -36,11 +36,12 @@ class UpdateAccount(
         val response = service.updateAccount(
             authorization = authToken.token,
             email = email,
-            name = name
+            name = name,
         )
 
         response.response?.let {
             if(response.response != SUCCESS_ACCOUNT_UPDATED){
+
                 throw Exception(ErrorHandling.ERROR_UPDATE_ACCOUNT)
             }
         }?:run{
@@ -52,7 +53,7 @@ class UpdateAccount(
         cache.updateAccount(
             id = _id,
             email = email,
-            name = name
+            name = name,
         )
 
         // Tell the UI it was successful

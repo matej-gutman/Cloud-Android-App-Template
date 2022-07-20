@@ -2,6 +2,7 @@ package com.templateapp.cloudapi.business.datasource.network.responseObjects
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.templateapp.cloudapi.business.domain.models.Role
 
 class User(
 
@@ -21,6 +22,11 @@ class User(
     @Expose
     var email: String,
 
+
+    @SerializedName("enabled")
+    @Expose
+    var enabled: Boolean,
+
     @SerializedName("createdAt")
     @Expose
     var createdAt: String,
@@ -28,6 +34,10 @@ class User(
     @SerializedName("updatedAt")
     @Expose
     var updatedAt: String,
+
+    @SerializedName("role")
+    @Expose
+    var role: Role,
 
     @SerializedName("userCreatedSequence")
     @Expose

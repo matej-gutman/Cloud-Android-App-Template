@@ -8,4 +8,5 @@ data class AccountState(
     val isLoading: Boolean = false,
     val account: Account? = null,
     val queue: Queue<StateMessage> = Queue(mutableListOf()),
+    val isAdmin: Boolean = false,
 )

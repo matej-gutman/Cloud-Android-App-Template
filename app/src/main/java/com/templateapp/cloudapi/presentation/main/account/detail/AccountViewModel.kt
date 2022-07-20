@@ -4,10 +4,17 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.findNavController
+import com.templateapp.cloudapi.R
+import androidx.navigation.fragment.findNavController
 import com.templateapp.cloudapi.business.domain.util.StateMessage
+import com.templateapp.cloudapi.business.domain.util.SuccessHandling
 import com.templateapp.cloudapi.business.domain.util.UIComponentType
 import com.templateapp.cloudapi.business.domain.util.doesMessageAlreadyExistInQueue
 import com.templateapp.cloudapi.business.interactors.account.GetAccount
+import com.templateapp.cloudapi.presentation.main.account.settings.SettingsEvents
+import com.templateapp.cloudapi.presentation.main.account.update.UpdateAccountEvents
+import com.templateapp.cloudapi.presentation.main.account.users.ManageUsersFragment
 import com.templateapp.cloudapi.presentation.session.SessionEvents
 import com.templateapp.cloudapi.presentation.session.SessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,20 +34,91 @@ constructor(
 
     val state: MutableLiveData<AccountState> = MutableLiveData(AccountState())
 
+    init {
+        checkAdminRole()
+    }
     fun onTriggerEvent(event: AccountEvents) {
         when (event) {
-            is AccountEvents.GetAccount -> {
-                getAccount()
+            is AccountEvents.MyAccount -> {
+                myAccount()
             }
-            is AccountEvents.Logout -> {
-                logout()
+            is AccountEvents.OnAdmin -> {
+                onAdmin()
+            }
+            is AccountEvents.CheckIfAdmin -> {
+                checkAdminRole()
+            }
+            is AccountEvents.ManageUsers -> {
+                manageUsers()
+            }
+            is AccountEvents.ManageDevices -> {
+                manageDevices()
             }
             is AccountEvents.OnRemoveHeadFromQueue -> {
                 removeHeadFromQueue()
             }
+
+            is AccountEvents.GetAccount -> {
+                getAccount()
+            }
         }
     }
 
+    private fun getAccount() {
+
+        state.value?.let { state ->
+            getAccount.execute(
+                authToken = sessionManager.state.value?.authToken,
+            ).onEach { dataState ->
+                this.state.value = state.copy(isLoading = dataState.isLoading)
+
+                dataState.data?.let { account ->
+                    this.state.value = state.copy(account = account)
+
+                }
+
+                dataState.stateMessage?.let { stateMessage ->
+                    appendToMessageQueue(stateMessage)
+                }
+
+            }.launchIn(viewModelScope)
+        }
+
+
+
+    }
+
+    fun checkAdminRole(): Boolean {
+        var isAdmin = false;
+        state.value?.let { state ->
+            getAccount.execute(
+                authToken = sessionManager.state.value?.authToken,
+            ).onEach { dataState ->
+                this.state.value = state.copy(isLoading = dataState.isLoading)
+
+                dataState.data?.let { account ->
+                    this.state.value = state.copy(account = account)
+
+
+                    if(account.role.title == "Admin"){
+                       onAdmin()
+                    }
+                }
+
+                dataState.stateMessage?.let { stateMessage ->
+                    appendToMessageQueue(stateMessage)
+                }
+
+            }.launchIn(viewModelScope)
+        }
+        return isAdmin;
+    }
+
+    private fun onAdmin(){
+        state.value?.let { state ->
+            this.state.value = state.copy(isAdmin = true)
+        }
+    }
     private fun removeHeadFromQueue() {
         state.value?.let { state ->
             try {
@@ -65,27 +143,18 @@ constructor(
         }
     }
 
-    private fun getAccount() {
-        state.value?.let { state ->
-            getAccount.execute(
-                authToken = sessionManager.state.value?.authToken,
-            ).onEach { dataState ->
-                this.state.value = state.copy(isLoading = dataState.isLoading)
+    private fun myAccount() {
 
-                dataState.data?.let { account ->
-                    this.state.value = state.copy(account = account)
-                }
-
-                dataState.stateMessage?.let { stateMessage ->
-                    appendToMessageQueue(stateMessage)
-                }
-
-            }.launchIn(viewModelScope)
-        }
     }
 
-    private fun logout() {
-        sessionManager.onTriggerEvent(SessionEvents.Logout)
+    private fun manageUsers() {
+        //manageUsersFragment.onCreateView();
+
+    }
+
+    private fun manageDevices() {
+        //manageUsersFragment.onCreateView();
+
     }
 
 }

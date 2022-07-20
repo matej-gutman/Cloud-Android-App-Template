@@ -1,30 +1,27 @@
 package com.templateapp.cloudapi.presentation.auth.register
 
+import com.templateapp.cloudapi.business.domain.models.Role
+import com.templateapp.cloudapi.presentation.main.account.update.UpdateAccountEvents
+import com.templateapp.cloudapi.presentation.main.account.users.update.ChangeAccountEvents
+
 
 sealed class RegisterEvents{
 
-    data class Register(
+    data class Registration(
         val email: String,
-        val username: String,
-        val password: String,
-        val confirmPassword: String,
+        val role: String,
     ): RegisterEvents()
 
     data class OnUpdateEmail(
         val email: String
     ): RegisterEvents()
 
-    data class OnUpdateUsername(
-        val username: String
+    data class OnUpdateRole(
+        val role: Role
     ): RegisterEvents()
 
-    data class OnUpdatePassword(
-        val password: String
-    ): RegisterEvents()
 
-    data class OnUpdateConfirmPassword(
-        val confirmPassword: String
-    ): RegisterEvents()
-
+    object GetRoles: RegisterEvents()
+    object OnUpdateComplete: RegisterEvents()
     object OnRemoveHeadFromQueue: RegisterEvents()
 }

@@ -31,6 +31,7 @@ class GetAccount(
         authToken: AuthToken?,
     ): Flow<DataState<Account>> = flow {
         emit(DataState.loading<Account>())
+
         if(authToken == null){
             throw Exception(ERROR_AUTH_TOKEN_INVALID)
         }
@@ -40,9 +41,6 @@ class GetAccount(
         // update/insert into the cache
         accountCache.insertAndReplace(account.toEntity())
 
-        // Any updates that were made are causing deletion of the account's row first. That
-        // triggers cascading 'delete' event into token as well. Fix it by loading token and making
-        // sure that it's the same as authToken.token
         if(tokenCache.searchById(account._id)==null)
             tokenCache.insert(authToken.toEntity())
 

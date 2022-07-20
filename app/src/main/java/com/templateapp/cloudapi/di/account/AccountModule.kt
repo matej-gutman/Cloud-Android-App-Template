@@ -1,12 +1,12 @@
 package com.templateapp.cloudapi.di.account
 
 import com.templateapp.cloudapi.business.datasource.network.main.OpenApiMainService
-import com.templateapp.cloudapi.business.interactors.account.GetAccount
-import com.templateapp.cloudapi.business.interactors.account.GetAccountFromCache
-import com.templateapp.cloudapi.business.interactors.account.UpdateAccount
-import com.templateapp.cloudapi.business.interactors.account.UpdatePassword
 import com.templateapp.cloudapi.business.datasource.cache.account.AccountDao
+import com.templateapp.cloudapi.business.datasource.cache.account.RoleDao
 import com.templateapp.cloudapi.business.datasource.cache.auth.AuthTokenDao
+import com.templateapp.cloudapi.business.datasource.cache.task.TaskDao
+import com.templateapp.cloudapi.business.interactors.account.*
+import com.templateapp.cloudapi.business.interactors.task.SearchTasks
 import com.templateapp.cloudapi.presentation.util.ServerMsgTranslator
 import dagger.Module
 import dagger.Provides
@@ -41,6 +41,16 @@ object AccountModule {
 
     @Singleton
     @Provides
+    fun provideChangeAccount(
+        service: OpenApiMainService,
+        cache: AccountDao,
+        serverMsgTranslator: ServerMsgTranslator
+    ): ChangeAccount{
+        return ChangeAccount(service, cache, serverMsgTranslator)
+    }
+
+    @Singleton
+    @Provides
     fun provideGetAccountFromCache(
         cache: AccountDao,
         serverMsgTranslator: ServerMsgTranslator
@@ -56,6 +66,26 @@ object AccountModule {
         serverMsgTranslator: ServerMsgTranslator
     ): UpdatePassword{
         return UpdatePassword(service, serverMsgTranslator)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAllUsers(
+        service: OpenApiMainService,
+        cache: AccountDao,
+        serverMsgTranslator: ServerMsgTranslator
+    ): GetAllUsers {
+        return GetAllUsers(service, cache, serverMsgTranslator)
+    }
+
+    @Singleton
+    @Provides
+    fun provideAllRoles(
+        service: OpenApiMainService,
+        cache: RoleDao,
+        serverMsgTranslator: ServerMsgTranslator
+    ): GetAllRoles {
+        return GetAllRoles(service, cache, serverMsgTranslator)
     }
 }
 

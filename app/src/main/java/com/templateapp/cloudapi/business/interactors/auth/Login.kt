@@ -46,7 +46,9 @@ class Login(
                 createdAt = loginResponse.user.createdAt,
                 updatedAt = loginResponse.user.updatedAt,
                 userCreatedSequence = loginResponse.user.userCreatedSequence,
-                __v = loginResponse.user.__v
+                __v = loginResponse.user.__v,
+                role = loginResponse.user.role,
+                enabled = loginResponse.user.enabled
 
             ).toEntity()
         )

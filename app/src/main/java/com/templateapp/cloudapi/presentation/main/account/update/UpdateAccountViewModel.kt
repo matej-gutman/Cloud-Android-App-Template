@@ -136,14 +136,16 @@ constructor(
                 authToken = sessionManager.state.value?.authToken,
                 _id = sessionManager.state.value?.authToken?.accountId,
                 email = email,
-                name = username,
+                name = username
             ).onEach { dataState ->
                 this.state.value = state.copy(isLoading = dataState.isLoading)
 
                 dataState.data?.let { response ->
                     if(response.message == SuccessHandling.SUCCESS_ACCOUNT_UPDATED){
+
                         onTriggerEvent(UpdateAccountEvents.OnUpdateComplete)
                     }else{
+
                         appendToMessageQueue(
                             stateMessage = StateMessage(
                                 response = response

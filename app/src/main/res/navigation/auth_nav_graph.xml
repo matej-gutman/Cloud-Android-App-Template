@@ -30,7 +30,6 @@
 
     </fragment>
 
-
     <fragment
             android:id="@+id/forgotPasswordFragment"
             android:name="com.templateapp.cloudapi.presentation.auth.forgot_password.ForgotPasswordFragment"
