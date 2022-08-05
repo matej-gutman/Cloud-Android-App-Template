@@ -129,11 +129,9 @@ class TaskListAdapter(
                 interaction?.onItemSelected(adapterPosition, item)
             }
 
-            Log.d("GlideTest", BASE_URL + item.image)
-
             val ABC = "application/json";
             if (authTokenInput != null) {
-                val url = "http://appcloud-env.eba-theyd4uu.eu-central-1.elasticbeanstalk.com/" + item.image
+                val url = "http://192.168.1.10:3000/" + item.image
                 val glideUrl = GlideUrl(
                     url,
                     LazyHeaders.Builder()
