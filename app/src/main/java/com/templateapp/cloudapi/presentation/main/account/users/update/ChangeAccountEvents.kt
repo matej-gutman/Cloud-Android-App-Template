@@ -13,7 +13,6 @@ sealed class ChangeAccountEvents{
     data class Update(
         val email: String,
         val username: String,
-        val age: Int,
         val enabled: Boolean,
         val role: String,
         val initEmail: String,
@@ -34,10 +33,6 @@ sealed class ChangeAccountEvents{
 
     data class OnUpdateUsername(
         val username: String
-    ): ChangeAccountEvents()
-
-    data class OnUpdateAge(
-        val age: Int
     ): ChangeAccountEvents()
 
     object GetRoles: ChangeAccountEvents()

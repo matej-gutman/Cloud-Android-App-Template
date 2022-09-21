@@ -84,15 +84,15 @@ class ChangeAccountFragment : BaseAccountFragment() {
 
     private fun setAccountDataFields(account: Account){
 
-        email = account.email
-        name = account.name
+        email = account.email.toString()
+        name = account.name.toString()
         role = account.role
         binding.email.setText(account.email)
         binding.username.setText(account.name)
-        binding.age.setText(account.age.toString())
         binding.enabled.setChecked(account.enabled)
-        var createdAtList: List<String> = account.createdAt.split('T')
-        var updatedAtList: List<String> = account.updatedAt.split('T')
+        var list:  List<String> = emptyList()
+        var createdAtList: List<String> = account.createdAt?.split('T') ?: list
+        var updatedAtList: List<String> = account.updatedAt?.split('T') ?: list
 
 
         var createdAtTime = createdAtList[1].split(':')
@@ -138,13 +138,10 @@ class ChangeAccountFragment : BaseAccountFragment() {
 
     private fun saveChanges(){
        // var role: Role = Role("625d59e2949d171c2c0bb52b", "User")
-        var age  = binding.age.text.toString();
-        if(binding.age.text.toString() == ""){
-            age = "0";}
+
         viewModel.onTriggerEvent(ChangeAccountEvents.Update(
             email = binding.email.text.toString(),
             username = binding.username.text.toString(),
-            age = Integer.parseInt(age),
             enabled = binding.enabled.isChecked,
             role = binding.roleSpinner.selectedItem.toString(),
             initEmail = email,
@@ -172,14 +169,9 @@ class ChangeAccountFragment : BaseAccountFragment() {
     private fun cacheState(){
         val email = binding.email.text.toString()
         val username = binding.username.text.toString()
-        var age = binding.age.text.toString()
         val enabled = binding.enabled.text.toString()
         viewModel.onTriggerEvent(ChangeAccountEvents.OnUpdateEmail(email))
         viewModel.onTriggerEvent(ChangeAccountEvents.OnUpdateUsername(username))
-        if(binding.age.text.toString() == ""){
-            age = "0";
-        }
-        viewModel.onTriggerEvent(ChangeAccountEvents.OnUpdateAge(Integer.parseInt(age)))
         viewModel.onTriggerEvent(ChangeAccountEvents.OnUpdateEnabled(Boolean.equals(enabled)))
     }
 

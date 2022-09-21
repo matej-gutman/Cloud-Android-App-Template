@@ -14,28 +14,25 @@ data class AccountEntity(
     val _id: String,
 
     @ColumnInfo(name = "email")
-    val email: String,
+    val email: String?,
 
     @ColumnInfo(name = "name")
-    val name: String,
-
-    @ColumnInfo(name = "age")
-    val age: Int,
+    val name: String?,
 
     @ColumnInfo(name = "createdAt")
-    val createdAt: String,
+    val createdAt: String?,
 
     @ColumnInfo(name = "updatedAt")
-    val updatedAt: String,
+    val updatedAt: String?,
 
     @ColumnInfo(name = "enabled")
     val enabled: Boolean,
 
     @ColumnInfo(name = "userCreatedSequence")
-    val userCreatedSequence: Int,
+    val userCreatedSequence: Int?,
 
     @ColumnInfo(name = "__v")
-    val __v: Int,
+    val __v: Int?,
 
     @ColumnInfo(name = "role")
     @TypeConverters(RoleConverter::class)
@@ -48,7 +45,6 @@ fun AccountEntity.toAccount(): Account {
         _id = _id,
         email = email,
         name = name,
-        age = age,
         createdAt = createdAt,
         updatedAt = updatedAt,
         userCreatedSequence = userCreatedSequence,
@@ -63,7 +59,6 @@ fun Account.toEntity(): AccountEntity {
         _id = _id,
         email = email,
         name = name,
-        age = age,
         createdAt = createdAt,
         updatedAt = updatedAt,
         userCreatedSequence = userCreatedSequence,

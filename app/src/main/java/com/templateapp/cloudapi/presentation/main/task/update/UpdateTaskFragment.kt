@@ -141,7 +141,7 @@ class UpdateTaskFragment : BaseTaskFragment() {
             .into(binding.taskImage)
     } else {
 
-        val url ="http://192.168.1.10:3000/" + it
+        val url ="http://192.168.1.120:3000/" + it
         val glideUrl = GlideUrl(
             url,
             LazyHeaders.Builder()

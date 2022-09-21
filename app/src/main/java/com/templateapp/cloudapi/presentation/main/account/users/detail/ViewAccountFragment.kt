@@ -81,13 +81,13 @@ class ViewAccountFragment : BaseAccountFragment()
     private fun setAccountProperties(account: Account){
 
         binding.accountName.setText(account.name)
-        binding.age.setText(account.age.toString())
         binding.email.setText(account.email)
         binding.enabled.setChecked(account.enabled)
         binding.role.setText(account.role.title)
 
-        var createdAtList: List<String> = account.createdAt.split('T')
-        var updatedAtList: List<String> = account.updatedAt.split('T')
+        var list : List<String> = emptyList()
+        var createdAtList: List<String> = account.createdAt?.split('T') ?: list
+        var updatedAtList: List<String> = account.updatedAt?.split('T') ?:list
 
 
         var createdAtTime = createdAtList[1].split(':')

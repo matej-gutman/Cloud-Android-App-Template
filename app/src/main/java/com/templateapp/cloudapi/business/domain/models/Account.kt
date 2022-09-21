@@ -4,14 +4,13 @@ import com.templateapp.cloudapi.business.datasource.cache.account.RoleEntity
 
 data class Account(
     val _id: String,
-    val email: String,
-    val name: String,
-    val age: Int,
-    val createdAt: String,
-    val updatedAt: String,
-    val userCreatedSequence: Int,
+    val email: String?,
+    val name: String?,
+    val createdAt: String?,
+    val updatedAt: String?,
+    val userCreatedSequence: Int?,
     val enabled: Boolean,
-    val __v: Int,
+    val __v: Int?,
     val role: Role
 )
 
