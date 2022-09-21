@@ -24,7 +24,7 @@ class ManageDeviceAdapter(
     val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Device>() {
 
         override fun areItemsTheSame(oldItem: Device, newItem: Device): Boolean {
-            return oldItem._id == newItem._id
+            return oldItem.ip == newItem.ip
         }
 
         override fun areContentsTheSame(oldItem: Device, newItem: Device): Boolean {
@@ -99,7 +99,7 @@ class ManageDeviceAdapter(
                 interaction?.onItemSelected(adapterPosition, item)
             }
 
-            binding.name.text = item._id
+            binding.name.text = item.ip
         }
     }
 
