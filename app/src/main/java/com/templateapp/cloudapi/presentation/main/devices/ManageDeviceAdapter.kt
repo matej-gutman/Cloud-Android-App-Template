@@ -83,8 +83,8 @@ class ManageDeviceAdapter(
         return differ.currentList.size
     }
 
-    fun submitList(tasksList: List<Device>?, ){
-        val newList = tasksList?.toMutableList()
+    fun submitList(devicesList: List<Device>?, ){
+        val newList = devicesList?.toMutableList()
         differ.submitList(newList)
     }
 
@@ -99,7 +99,9 @@ class ManageDeviceAdapter(
                 interaction?.onItemSelected(adapterPosition, item)
             }
 
-            binding.name.text = item.ip
+            binding.deviceSerial.text = item.serialNumber
+            binding.deviceIp.text = item.ip
+
         }
     }
 

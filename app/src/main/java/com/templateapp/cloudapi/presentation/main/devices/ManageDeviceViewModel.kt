@@ -4,19 +4,12 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-
-import kotlinx.coroutines.*
 import androidx.lifecycle.viewModelScope
+
 import com.templateapp.cloudapi.business.domain.util.*
-import com.templateapp.cloudapi.business.interactors.account.GetAccount
-import com.templateapp.cloudapi.business.interactors.account.GetAccountFromCache
-import com.templateapp.cloudapi.business.interactors.account.GetAllUsers
-import com.templateapp.cloudapi.business.interactors.account.UpdateAccount
 import com.templateapp.cloudapi.business.interactors.devices.ScanDevices
-import com.templateapp.cloudapi.presentation.main.account.detail.AccountState
 import com.templateapp.cloudapi.presentation.main.task.detail.ViewTaskEvents
 import com.templateapp.cloudapi.presentation.main.task.list.TaskEvents
-import com.templateapp.cloudapi.presentation.session.SessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -26,7 +19,7 @@ import javax.inject.Inject
 class ManageDeviceViewModel
 @Inject
 constructor(
-    private val getDevices: ScanDevices,
+    private val scanDevices: ScanDevices,
     savedStateHandle: SavedStateHandle,
 ): ViewModel(){
 
@@ -60,7 +53,17 @@ constructor(
     }
 
     private fun getDevices() {
-        Log.d(TAG, "Getting devices ...")
+        state.value?.let { state ->
+            scanDevices.execute(
+
+            ).onEach { dataState ->
+                this.state.value = state.copy(isLoading = dataState.isLoading)
+
+                dataState.data?.let { data ->
+                    this.state.value = state.copy(deviceList = data)
+                }
+            }.launchIn(viewModelScope)
+        }
     }
 
     private fun removeHeadFromQueue(){

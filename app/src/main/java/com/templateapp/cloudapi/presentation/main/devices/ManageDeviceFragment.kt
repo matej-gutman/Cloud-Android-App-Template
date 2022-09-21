@@ -60,7 +60,7 @@ class ManageDeviceFragment : BaseAccountFragment(),
                 })
 
             recyclerAdapter?.apply {
-                //  submitList(tasksList = state.usersList)
+                submitList(devicesList = state.deviceList)
             }
         }
     }

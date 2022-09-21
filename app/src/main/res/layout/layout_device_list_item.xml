@@ -27,14 +27,22 @@
                 >
             <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:id="@+id/name"
-                    android:text="@string/device"
-                    android:gravity="center"
-                    android:textColor="#fff"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/device_serial"
+                    android:text="@string/device_serial"
+                    android:textColor="#FFFFFF"
                     android:textSize="19sp"
                     />
 
+            <TextView
+                    android:gravity="right"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/device_ip"
+                    android:text="@string/device_ip"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    />
 
 
         </LinearLayout>

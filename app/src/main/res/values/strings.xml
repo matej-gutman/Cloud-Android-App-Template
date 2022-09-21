@@ -98,6 +98,9 @@
     <string name="no_more_results">No more results...</string>
     <string name="apply">Apply</string>
 
+    <string name="device_serial" translatable="false">Serial: N/A</string>
+    <string name="device_ip" translatable="false">IP: N/A</string>
+
     <!-- Dialogs -->
     <string name="error_email_exists">User with this email is already registered.</string>
     <string name="error_passwords_do_not_match">Passwords mismatch. Please try again.</string>
