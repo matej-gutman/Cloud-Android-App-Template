@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.templateapp.cloudapi.R
 import com.templateapp.cloudapi.business.domain.util.*
+import com.templateapp.cloudapi.business.domain.util.Constants.Companion.BASE_URL
 import com.templateapp.cloudapi.databinding.FragmentForgotPasswordBinding
 import com.templateapp.cloudapi.presentation.auth.BaseAuthFragment
 import com.templateapp.cloudapi.presentation.auth.forgot_password.ForgotPasswordFragment.WebAppInterface.OnWebInteractionCallback
@@ -110,7 +111,7 @@ class ForgotPasswordFragment : BaseAuthFragment() {
                 uiCommunicationListener.displayProgressBar(false)
             }
         }
-        webView.loadUrl(Constants.PASSWORD_RESET_URL)
+        webView.loadUrl(BASE_URL + "passwordresetform")
         webView.settings.javaScriptEnabled = true
         webView.addJavascriptInterface(
             WebAppInterface(webInteractionCallback),
