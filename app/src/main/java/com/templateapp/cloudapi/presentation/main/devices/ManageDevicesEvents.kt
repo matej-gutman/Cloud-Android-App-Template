@@ -12,5 +12,4 @@ sealed class ManageDevicesEvents{
 
     object OnRemoveHeadFromQueue: ManageDevicesEvents()
 
-    object NextPage: ManageDevicesEvents()
 }

@@ -37,7 +37,7 @@ constructor(
     init {
         // TODO: Implement saved state!
         //savedStateHandle.get<String>("taskId")?.let { taskId ->
-        //    onTriggerEvent(ManageDevicesEvents.GetDevice)
+            onTriggerEvent(ManageDevicesEvents.GetDevice)
         //}
     }
 
@@ -55,34 +55,13 @@ constructor(
             is ManageDevicesEvents.Error -> {
                 appendToMessageQueue(event.stateMessage)
             }
-            is ManageDevicesEvents.NextPage -> {
-                nextPage()
-            }
 
         }
-    }
-
-    private fun incrementPageNumber() {
-        state.value?.let { state ->
-            this.state.value = state.copy(page = state.page + 1)
-        }
-    }
-
-    private fun onUpdateQueryExhausted(isExhausted: Boolean) {
-        state.value?.let { state ->
-            this.state.value = state.copy(isQueryExhausted = isExhausted)
-        }
-    }
-
-
-    private fun nextPage() {
-        Log.d(TAG, "Getting devices - next page ...")
     }
 
     private fun getDevices() {
         Log.d(TAG, "Getting devices ...")
     }
-
 
     private fun removeHeadFromQueue(){
         Log.d(TAG, "Getting devices - removeHeadFromQueue")
@@ -112,23 +91,3 @@ constructor(
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

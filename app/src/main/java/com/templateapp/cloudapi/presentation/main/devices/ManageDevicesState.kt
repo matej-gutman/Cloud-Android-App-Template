@@ -9,7 +9,4 @@ data class ManageDevicesState(
     val queue: Queue<StateMessage> = Queue(mutableListOf()),
     val device: String = "",
     val deviceList: List<String> = listOf(),
-    val query: String = "",
-    val page: Int = 1,
-    val isQueryExhausted: Boolean = false, // no more results available, prevent next page
 )
