@@ -15,7 +15,7 @@ import com.templateapp.cloudapi.presentation.main.account.BaseAccountFragment
 import com.templateapp.cloudapi.presentation.util.TopSpacingItemDecoration
 import com.templateapp.cloudapi.presentation.util.processQueue
 
-class ManageDeviceFragment : BaseAccountFragment(),
+class ManageDeviceFragment : BaseManageDevicesFragment(),
     ManageDeviceAdapter.Interaction,
     SwipeRefreshLayout.OnRefreshListener
 {
