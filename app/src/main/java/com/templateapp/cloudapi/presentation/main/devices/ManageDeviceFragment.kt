@@ -120,6 +120,7 @@ class ManageDeviceFragment : BaseManageDevicesFragment(),
 
     override fun onDestroyView() {
         Log.d(TAG, "onDestroyView.")
+        uiCommunicationListener.displayProgressBar(false)
         super.onDestroyView()
         recyclerAdapter = null
         _binding = null
