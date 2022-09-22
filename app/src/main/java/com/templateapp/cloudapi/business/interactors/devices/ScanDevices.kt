@@ -13,7 +13,8 @@ class ScanDevices(
 
     fun execute(
     ): Flow<DataState<List<Device>>> = flow {
-        //emit(DataState.loading<List<Device>>())
+
+        emit(DataState.loading<List<Device>>())
         // Scan for devices on the network
         delay(3000)
         // TODO: Implement. This is only a placeholder for fake devices.

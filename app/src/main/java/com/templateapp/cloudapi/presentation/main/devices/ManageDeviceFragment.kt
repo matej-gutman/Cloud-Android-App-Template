@@ -27,6 +27,8 @@ class ManageDeviceFragment : BaseManageDevicesFragment(),
     private var _binding: FragmentManageDevicesBinding? = null
     private val binding get() = _binding!!
 
+    private var isLoading = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,6 +50,7 @@ class ManageDeviceFragment : BaseManageDevicesFragment(),
     private fun subscribeObservers(){
         viewModel.state.observe(viewLifecycleOwner) { state ->
 
+            isLoading = state.isLoading
             uiCommunicationListener.displayProgressBar(state.isLoading)
 
             processQueue(
@@ -59,8 +62,11 @@ class ManageDeviceFragment : BaseManageDevicesFragment(),
                     }
                 })
 
+            //binding.swipeRefresh.isRefreshing = state.isLoading
+
             recyclerAdapter?.apply {
                 submitList(devicesList = state.deviceList)
+
             }
         }
     }
@@ -84,6 +90,10 @@ class ManageDeviceFragment : BaseManageDevicesFragment(),
             })
             adapter = recyclerAdapter
         }
+        binding.swipeRefresh.isRefreshing = false
+
+        binding.swipeRefresh.setProgressViewOffset(false, -200, -200)
+
     }
 
     override fun onItemSelected(position: Int, item: Device) {
@@ -119,7 +129,9 @@ class ManageDeviceFragment : BaseManageDevicesFragment(),
         Log.d(TAG, "onRefresh.")
         binding.swipeRefresh.isRefreshing = false
 
-        viewModel.onTriggerEvent(ManageDevicesEvents.GetDevice)
+        if(!isLoading)
+            viewModel.onTriggerEvent(ManageDevicesEvents.GetDevice)
+
         /*viewModel.onTriggerEvent(
             ManageDevicesEvents.Error(
                 stateMessage = StateMessage(
