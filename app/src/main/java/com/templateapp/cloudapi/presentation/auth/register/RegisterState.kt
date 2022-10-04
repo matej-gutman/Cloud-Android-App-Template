@@ -1,6 +1,7 @@
 package com.templateapp.cloudapi.presentation.auth.register
 
 import com.templateapp.cloudapi.business.domain.models.Account
+import com.templateapp.cloudapi.business.domain.models.Company
 import com.templateapp.cloudapi.business.domain.models.Register
 import com.templateapp.cloudapi.business.domain.models.Role
 import com.templateapp.cloudapi.business.domain.util.Queue
@@ -11,6 +12,7 @@ data class RegisterState(
 
     val register: Account? = null,
     val roles: List<Role> = listOf(),
+    val companies: List<Company> = listOf(),
     val isComplete: Boolean = false,
     val queue: Queue<StateMessage> = Queue(mutableListOf()),
 )

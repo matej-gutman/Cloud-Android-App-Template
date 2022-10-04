@@ -2,6 +2,7 @@ package com.templateapp.cloudapi.business.datasource.cache.account
 
 import androidx.room.*
 import com.templateapp.cloudapi.business.domain.models.Account
+import com.templateapp.cloudapi.business.domain.models.Company
 import com.templateapp.cloudapi.business.domain.models.Role
 
 @Entity(
@@ -16,8 +17,14 @@ data class AccountEntity(
     @ColumnInfo(name = "email")
     val email: String,
 
-    @ColumnInfo(name = "name")
-    val name: String,
+    @ColumnInfo(name = "username")
+    val username: String,
+
+    @ColumnInfo(name = "firstName")
+    val firstName: String,
+
+    @ColumnInfo(name = "lastName")
+    val lastName: String,
 
     @ColumnInfo(name = "age")
     val age: Int,
@@ -41,13 +48,21 @@ data class AccountEntity(
     @TypeConverters(RoleConverter::class)
     val role: Role,
 
+
+    @ColumnInfo(name = "company")
+    @TypeConverters(CompanyConverter::class)
+    val company: Company?
+
     )
 
 fun AccountEntity.toAccount(): Account {
     return Account(
         _id = _id,
         email = email,
-        name = name,
+        username = username,
+        firstName = firstName,
+        lastName = lastName,
+        company = company,
         age = age,
         createdAt = createdAt,
         updatedAt = updatedAt,
@@ -62,7 +77,10 @@ fun Account.toEntity(): AccountEntity {
     return AccountEntity(
         _id = _id,
         email = email,
-        name = name,
+        username = username,
+        firstName = firstName,
+        lastName = lastName,
+        company = company,
         age = age,
         createdAt = createdAt,
         updatedAt = updatedAt,

@@ -4,8 +4,10 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.templateapp.cloudapi.business.domain.models.Company
 import com.templateapp.cloudapi.business.domain.models.Role
 import com.templateapp.cloudapi.business.domain.util.*
+import com.templateapp.cloudapi.business.interactors.account.GetAllCompanies
 import com.templateapp.cloudapi.business.interactors.account.GetAllRoles
 import com.templateapp.cloudapi.business.interactors.auth.Register
 import com.templateapp.cloudapi.presentation.session.SessionManager
@@ -20,7 +22,7 @@ class RegisterViewModel
 constructor(
     private val registerf: Register,
     private val sessionManager: SessionManager,
-
+    private val getAllCompanies: GetAllCompanies,
     private val getAllRoles: GetAllRoles,
 ) : ViewModel() {
     private val TAG: String = "AppDebug"
@@ -28,6 +30,7 @@ constructor(
     val state: MutableLiveData<RegisterState> = MutableLiveData(RegisterState())
     init {
             onTriggerEvent(RegisterEvents.GetRoles)
+            onTriggerEvent(RegisterEvents.GetCompanies)
     }
     fun onTriggerEvent(event: RegisterEvents) {
         when (event) {
@@ -35,6 +38,7 @@ constructor(
                 register(
                     email = event.email,
                     role = event.role,
+                    company= event.company,
                 )
             }
 
@@ -44,6 +48,14 @@ constructor(
             is RegisterEvents.GetRoles -> {
             getRoles()
             }
+
+            is RegisterEvents.OnUpdateCompany -> {
+                onUpdateCompany(event.company)
+            }
+            is RegisterEvents.GetCompanies -> {
+                getCompanies()
+            }
+
 
             is RegisterEvents.OnUpdateEmail -> {
                 onUpdateEmail(event.email)
@@ -82,6 +94,36 @@ constructor(
 
             }.launchIn(viewModelScope)
         }
+        //getCompanies()
+        return lista;
+    }
+
+
+    public fun getCompanies() : List<Company> {
+
+        println("priiinttt")
+        var lista : List<Company> = emptyList()
+        state.value?.let { state ->
+            getAllCompanies.execute(
+                authToken = sessionManager.state.value?.authToken,
+            ).onEach { dataState ->
+                this.state.value = state.copy(isLoading = dataState.isLoading)
+
+                dataState.data?.let { list ->
+
+                    this.state.value = state.copy(companies = list)
+
+                }
+                dataState.stateMessage?.let { stateMessage ->
+                    if(stateMessage.response.message?.contains(ErrorHandling.INVALID_PAGE) == true){
+                        //onUpdateQueryExhausted(true)
+                    }else{
+                        appendToMessageQueue(stateMessage)
+                    }
+                }
+
+            }.launchIn(viewModelScope)
+        }
         return lista;
     }
 
@@ -99,6 +141,16 @@ constructor(
         state.value?.let { state ->
             state.register?.let { register ->
                 val new = register.copy(role = role)
+                this.state.value = state.copy(register = new)
+            }
+        }
+    }
+
+
+    private fun onUpdateCompany(company: Company){
+        state.value?.let { state ->
+            state.register?.let { register ->
+                val new = register.copy(company = company)
                 this.state.value = state.copy(register = new)
             }
         }
@@ -136,7 +188,8 @@ constructor(
 
     private fun register(
         email: String,
-        role: String
+        role: String,
+        company: String
 
     ) {
         // TODO("Perform some simple form validation?")
@@ -144,8 +197,10 @@ constructor(
 
         state.value?.let { state ->
             registerf.execute(
+                authToken = sessionManager.state.value?.authToken,
                 email = email,
-                role = role
+                role = role,
+                company = company
 
             ).onEach { dataState ->
                 this.state.value = state.copy(isLoading = dataState.isLoading)

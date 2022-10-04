@@ -98,7 +98,7 @@ class ManageUsersAdapter(
                 interaction?.onItemSelected(adapterPosition, item)
             }
 
-            binding.username.text = item.name
+            binding.username.text = item.username
         }
     }
 

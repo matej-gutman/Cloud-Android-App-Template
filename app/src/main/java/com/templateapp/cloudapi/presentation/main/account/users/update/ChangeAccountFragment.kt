@@ -85,10 +85,10 @@ class ChangeAccountFragment : BaseAccountFragment() {
     private fun setAccountDataFields(account: Account){
 
         email = account.email
-        name = account.name
+        name = account.username
         role = account.role
         binding.email.setText(account.email)
-        binding.username.setText(account.name)
+        binding.username.setText(account.username)
         binding.age.setText(account.age.toString())
         binding.enabled.setChecked(account.enabled)
         var createdAtList: List<String> = account.createdAt.split('T')

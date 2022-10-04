@@ -11,7 +11,6 @@ import retrofit2.http.*
 
 interface OpenApiMainService {
 
-
     @GET(API+ "/users/me")
     suspend fun getAccount(
         @Header("Authorization") authorization: String
@@ -28,7 +27,7 @@ interface OpenApiMainService {
     suspend fun updateAccount(
         @Header("Authorization") authorization: String,
         @Field("email") email: String,
-        @Field("name") name: String
+        @Field("username") username: String
     ): AccountUpdateResponse
 
     @PATCH(API+"/users/update")
@@ -36,7 +35,7 @@ interface OpenApiMainService {
     suspend fun changeAccount(
         @Header("Authorization") authorization: String,
         @Field("email") email: String,
-        @Field("name") name: String,
+        @Field("username") username: String,
         @Field("age") age: Int,
         @Field("enabled") enabled: Boolean,
         @Field("role") role: String,
@@ -126,6 +125,11 @@ interface OpenApiMainService {
     suspend fun getAllRoles(
         @Header("Authorization") authorization: String,
     ): RolesResponse
+
+    @GET(API+"/getAllCompanies")
+    suspend fun getAllCompanies(
+        @Header("Authorization") authorization: String,
+    ): CompaniesResponse
 
 
     @GET(API+ "/all_devices")

@@ -9,8 +9,8 @@ import com.templateapp.cloudapi.business.datasource.cache.auth.AuthTokenEntity
 import com.templateapp.cloudapi.business.datasource.cache.task.TaskDao
 import com.templateapp.cloudapi.business.datasource.cache.task.TaskEntity
 
-@Database(entities = [AuthTokenEntity::class, AccountEntity::class, TaskEntity::class, RoleEntity::class], version = 1)
-@TypeConverters(RoleConverter::class)
+@Database(entities = [AuthTokenEntity::class, AccountEntity::class, TaskEntity::class, RoleEntity::class, CompanyEntity::class], version = 1)
+@TypeConverters(RoleConverter::class, CompanyConverter::class)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun getAuthTokenDao(): AuthTokenDao
@@ -20,6 +20,7 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun getTaskDao(): TaskDao
 
     abstract fun getRoleDao(): RoleDao
+    abstract fun getCompanyDao(): CompanyDao
 
     companion object{
         val DATABASE_NAME: String = "app_db"

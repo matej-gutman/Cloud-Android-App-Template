@@ -80,7 +80,7 @@ class ViewAccountFragment : BaseAccountFragment()
 
     private fun setAccountProperties(account: Account){
 
-        binding.accountName.setText(account.name)
+        binding.accountName.setText(account.username)
         binding.age.setText(account.age.toString())
         binding.email.setText(account.email)
         binding.enabled.setChecked(account.enabled)

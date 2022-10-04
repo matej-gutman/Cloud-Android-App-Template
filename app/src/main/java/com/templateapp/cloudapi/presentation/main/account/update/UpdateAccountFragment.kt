@@ -57,7 +57,7 @@ class UpdateAccountFragment : BaseAccountFragment() {
 
     private fun setAccountDataFields(account: Account){
         binding.inputEmail.setText(account.email)
-        binding.inputUsername.setText(account.name)
+        binding.inputUsername.setText(account.username)
     }
 
     private fun saveChanges(){

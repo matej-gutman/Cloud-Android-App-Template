@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.templateapp.cloudapi.R
+import com.templateapp.cloudapi.business.domain.models.Company
 import com.templateapp.cloudapi.business.domain.models.Role
 import com.templateapp.cloudapi.business.domain.util.StateMessageCallback
 import com.templateapp.cloudapi.databinding.FragmentRegisterBinding
@@ -24,6 +25,7 @@ class RegisterFragment : BaseAuthFragment() {
     private val binding get() = _binding!!
 
     private lateinit var role: Role;
+    private lateinit var company: Company;
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -64,6 +66,10 @@ class RegisterFragment : BaseAuthFragment() {
                 setAccountDataFieldsRoles(state.roles)
             }
 
+            state.companies?.let { companies ->
+                setAccountDataFieldsCompanies(state.companies)
+            }
+
         })
 
     }
@@ -73,7 +79,7 @@ class RegisterFragment : BaseAuthFragment() {
         if(roles.size!=0) {
             role = roles[0];
         }
-        if (roles != null) {
+        if (roles.size!=0) {
 
             val adapter = activity?.let {
                 ArrayAdapter<Role>(
@@ -101,6 +107,41 @@ class RegisterFragment : BaseAuthFragment() {
     }
 
 
+
+    private fun setAccountDataFieldsCompanies(companies: List<Company>){
+
+        if(companies.size!=0) {
+            company = companies[0];
+        }
+        if (companies.size!=0) {
+
+            val adapter = activity?.let {
+                ArrayAdapter<Company>(
+                    it,
+                    R.layout.simple_spinner_item,
+                    companies
+                )
+            }
+            if (adapter != null) {
+                adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item)
+            }
+            binding.companySpinner!!.setAdapter(adapter)
+            for(i in 0 until companies.size step 1){
+                if(company.title.equals(companies[i].title)){
+
+
+                    binding.companySpinner.setSelection(i);
+
+                }
+            }
+
+
+
+        }
+    }
+
+
+
     private fun cacheState(){
         viewModel.onTriggerEvent(RegisterEvents.OnUpdateEmail(binding.inputEmail.text.toString()))
        // viewModel.onTriggerEvent(RegisterEvents.OnUpdateRole(binding.roleSpinner.selectedItem.toString()))
@@ -113,6 +154,7 @@ class RegisterFragment : BaseAuthFragment() {
         viewModel.onTriggerEvent(RegisterEvents.Registration(
             email = binding.inputEmail.text.toString(),
             role = binding.roleSpinner.selectedItem.toString(),
+            company = binding.companySpinner.selectedItem.toString(),
         ))
 
     }

@@ -23,7 +23,7 @@ class ChangeAccount(
         authToken: AuthToken?,
         _id: String?,
         email: String,
-        name: String,
+        username: String,
         age: Int,
         enabled: Boolean,
         role: String,
@@ -42,7 +42,7 @@ class ChangeAccount(
         val response = service.changeAccount(
             authorization = authToken.token,
             email = email,
-            name = name,
+            username = username,
             age = age,
             enabled = enabled,
             role = role,
@@ -64,7 +64,7 @@ class ChangeAccount(
         cache.changeAccount(
             id = _id,
             email = email,
-            name = name,
+            username = username,
             age = age,
             enabled = enabled,
             role = role

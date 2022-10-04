@@ -2,6 +2,7 @@ package com.templateapp.cloudapi.business.datasource.network.responseObjects
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.templateapp.cloudapi.business.domain.models.Company
 import com.templateapp.cloudapi.business.domain.models.Role
 
 class User(
@@ -14,9 +15,17 @@ class User(
     @Expose
     var _id: String,
 
-    @SerializedName("name")
+    @SerializedName("username")
     @Expose
-    var name: String,
+    var username: String,
+
+    @SerializedName("firstName")
+    @Expose
+    var firstName: String,
+
+    @SerializedName("lastName")
+    @Expose
+    var lastName: String,
 
     @SerializedName("email")
     @Expose
@@ -38,6 +47,12 @@ class User(
     @SerializedName("role")
     @Expose
     var role: Role,
+
+
+
+    @SerializedName("company")
+    @Expose
+    var company: Company,
 
     @SerializedName("userCreatedSequence")
     @Expose

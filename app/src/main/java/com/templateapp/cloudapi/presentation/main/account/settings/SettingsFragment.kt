@@ -75,7 +75,7 @@ class SettingsFragment : BaseAccountFragment() {
 
     private fun setAccountDataFields(account: Account){
         binding.email.text = account.email
-        binding.username.text = account.name
+        binding.username.text = account.username
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

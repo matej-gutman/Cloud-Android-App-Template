@@ -132,6 +132,7 @@ constructor(
         } // main coroutine continues while a previous one is delayed
     }
     private fun getDevices() {
+        println("u devices sam")
         //job.join() - if i want to wait for some coroutine to be over
         //job.cancel() - ako bude timeout ili tako nesto
         /*val Client = UDP_Client()

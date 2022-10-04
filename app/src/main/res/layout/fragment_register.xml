@@ -88,31 +88,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true">
-            <TextView
-                    android:id="@+id/role_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="vertical"
-                    android:text="@string/role_field"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/grey5"
-                    android:textSize="15sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            <Spinner
-                    android:id="@+id/role_spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="35dp"
-                    android:entries="@array/roles"
-                    android:textSize="18sp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/role_name" />
+
+                <TextView
+                        android:id="@+id/role_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
+                        android:text="@string/role_field"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/grey5"
+                        android:textSize="15sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                        android:id="@+id/role_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="35dp"
+                        android:textSize="18sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/role_name" />
 
             <View
                     android:layout_width="match_parent"
@@ -121,6 +122,46 @@
                     android:layout_marginRight="30dp"
                     android:layout_marginBottom="8dp"
                     android:background="@color/grey3" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true">
+                <TextView
+                        android:id="@+id/company_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
+                        android:text="@string/company_field"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/grey5"
+                        android:textSize="15sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                        android:id="@+id/company_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="35dp"
+                        android:textSize="18sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/company_name" />
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="69dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/grey3" />
             </RelativeLayout>
         </com.google.android.material.textfield.TextInputLayout>
 

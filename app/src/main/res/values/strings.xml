@@ -143,6 +143,7 @@
     <string name="name"  >Name</string>
     <string name="email"  >Email</string>
     <string name="role_field"  >Role</string>
+    <string name="company_field" translatable="false">Company</string>
     <string name="age_field"  >Age</string>
     <string name="updatedAt_field"  >Updated at</string>
     <string name="createdAt_field"  >Created at</string>

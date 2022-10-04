@@ -3,7 +3,9 @@ package com.templateapp.cloudapi.business.datasource.network.main
 import androidx.room.TypeConverters
 import com.templateapp.cloudapi.business.domain.models.Account
 import com.google.gson.annotations.SerializedName
+import com.templateapp.cloudapi.business.datasource.cache.account.CompanyEntity
 import com.templateapp.cloudapi.business.datasource.cache.account.RoleEntity
+import com.templateapp.cloudapi.business.domain.models.Company
 import com.templateapp.cloudapi.business.domain.models.Role
 
 class AccountDto(
@@ -14,8 +16,15 @@ class AccountDto(
     @SerializedName("email")
     val email: String,
 
-    @SerializedName("name")
-    val name: String,
+    @SerializedName("username")
+    val username: String,
+
+    @SerializedName("firstName")
+    val firstName: String,
+
+
+    @SerializedName("lastName")
+    val lastName: String,
 
     @SerializedName("age")
     val age: Int,
@@ -36,15 +45,21 @@ class AccountDto(
     @TypeConverters(RoleEntity::class)
     val role: Role,
 
+
+    @SerializedName("company")
+    @TypeConverters(CompanyEntity::class)
+    val company: Company,
+
+
     @SerializedName("__v")
     val __v: Int,
 
     @SerializedName("error")
     val error: String?,
 
-) {
+    ) {
     override fun toString(): String {
-        return "AccountDto(_id='$_id', email='$email', name='$name', age=$age, enabled=$enabled, createdAt='$createdAt', updatedAt='$updatedAt', userCreatedSequence=$userCreatedSequence, role=$role, __v=$__v, error=$error)"
+        return "AccountDto(_id='$_id', email='$email', name='$username', age=$age, enabled=$enabled, createdAt='$createdAt', updatedAt='$updatedAt', userCreatedSequence=$userCreatedSequence, role=$role, __v=$__v, error=$error)"
     }
 }
 
@@ -53,7 +68,10 @@ fun AccountDto.toAccount(): Account {
     return Account(
         _id = _id,
         email = email,
-        name = name,
+        username = username,
+        firstName = firstName,
+        lastName = lastName,
+        company = company,
         age = age,
         createdAt = createdAt,
         updatedAt = updatedAt,

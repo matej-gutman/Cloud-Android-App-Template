@@ -44,7 +44,7 @@ fun TaskDto.toTask(): Task{
             image = image,
             createdAt = DateUtils.convertServerStringDateToLong(createdAt),
             updatedAt = DateUtils.convertServerStringDateToLong(updatedAt),
-            username = owner.name
+            username = owner.username
         )
 }
 

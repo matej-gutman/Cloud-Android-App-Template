@@ -26,14 +26,22 @@ class Register(
     private val serverMsgTranslator: ServerMsgTranslator
 ){
     fun execute(
+        authToken: AuthToken?,
         email: String,
-        role: String
+        role: String,
+        company: String
+
 
     ): Flow<DataState<Response>> = flow {
         emit(DataState.loading<Response>())
+        if(authToken == null){
+            throw Exception(ErrorHandling.ERROR_AUTH_TOKEN_INVALID)
+        }
         val registerResponse = service.register(
+            authorization = authToken.token,
             email = email,
-            role = role
+            role = role,
+            company = company
 
         )
 

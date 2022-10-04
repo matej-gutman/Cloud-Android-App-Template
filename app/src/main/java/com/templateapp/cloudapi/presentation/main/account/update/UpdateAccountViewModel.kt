@@ -105,7 +105,7 @@ constructor(
     private fun onUpdateUsername(name: String){
         state.value?.let { state ->
             state.account?.let { account ->
-                val new = account.copy(name = name)
+                val new = account.copy(username = name)
                 this.state.value = state.copy(account = new)
             }
         }
@@ -136,7 +136,7 @@ constructor(
                 authToken = sessionManager.state.value?.authToken,
                 _id = sessionManager.state.value?.authToken?.accountId,
                 email = email,
-                name = username
+                username = username
             ).onEach { dataState ->
                 this.state.value = state.copy(isLoading = dataState.isLoading)
 

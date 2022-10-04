@@ -22,7 +22,7 @@ class UpdateAccount(
         authToken: AuthToken?,
         _id: String?,
         email: String,
-        name: String,
+        username: String,
     ): Flow<DataState<Response>> = flow {
         emit(DataState.loading<Response>())
         if(authToken == null){
@@ -36,7 +36,7 @@ class UpdateAccount(
         val response = service.updateAccount(
             authorization = authToken.token,
             email = email,
-            name = name,
+            username = username,
         )
 
         response.response?.let {
@@ -53,7 +53,7 @@ class UpdateAccount(
         cache.updateAccount(
             id = _id,
             email = email,
-            name = name,
+            username = username,
         )
 
         // Tell the UI it was successful

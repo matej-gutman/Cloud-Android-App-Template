@@ -41,7 +41,10 @@ class Login(
             Account(
                 _id = loginResponse.user._id,
                 email = loginResponse.user.email,
-                name = loginResponse.user.name,
+                username = loginResponse.user.username,
+                firstName = loginResponse.user.firstName,
+                lastName = loginResponse.user.lastName,
+                company = loginResponse.user.company,
                 age = loginResponse.user.age,
                 createdAt = loginResponse.user.createdAt,
                 updatedAt = loginResponse.user.updatedAt,

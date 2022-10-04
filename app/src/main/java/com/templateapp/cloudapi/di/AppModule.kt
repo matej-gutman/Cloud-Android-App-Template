@@ -13,6 +13,7 @@ import com.templateapp.cloudapi.business.datasource.network.main.OpenApiMainServ
 import com.templateapp.cloudapi.business.domain.util.Constants
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.templateapp.cloudapi.business.datasource.cache.account.CompanyDao
 import com.templateapp.cloudapi.business.datasource.cache.account.RoleDao
 import com.templateapp.cloudapi.presentation.util.ServerMsgTranslator
 import dagger.Module
@@ -89,6 +90,12 @@ object AppModule{
     @Provides
     fun provideRoleDao(db: AppDatabase): RoleDao {
         return db.getRoleDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideCompanyDao(db: AppDatabase): CompanyDao {
+        return db.getCompanyDao()
     }
 
     @Singleton
