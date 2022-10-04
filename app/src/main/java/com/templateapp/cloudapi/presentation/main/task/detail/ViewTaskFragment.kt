@@ -93,7 +93,7 @@ class ViewTaskFragment : BaseTaskFragment()
     private fun setTaskProperties(task: Task){
         Glide.with(this)
             .setDefaultRequestOptions(requestOptions)
-            .load("http://192.168.1.10:3000/" + task.image)
+            .load(BASE_URL + task.image)
             .into(binding.taskImage)
         binding.taskTitle.setText(task.title)
         binding.taskOwner.setText(task.username)
