@@ -24,6 +24,11 @@
                 app:destination="@id/manageDevicesFragment"
                 />
 
+
+        <action android:id="@+id/action_accountFragment_to_manageRolesFragment"
+                app:destination="@id/manageRolesFragment"
+                />
+
     </fragment>
 
     <fragment android:id="@+id/settingsFragment"
@@ -71,6 +76,15 @@
             android:name="com.templateapp.cloudapi.presentation.main.devices.ManageDeviceFragment"
             android:label="@string/find_devices"
             tools:layout="@layout/fragment_manage_devices">
+
+    </fragment>
+
+
+    <fragment
+            android:id="@+id/manageRolesFragment"
+            android:name="com.templateapp.cloudapi.presentation.main.roles.ManageRolesFragment"
+            android:label="@string/manage_roles"
+            tools:layout="@layout/fragment_manage_roles">
 
     </fragment>
 

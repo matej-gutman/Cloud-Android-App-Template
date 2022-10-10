@@ -91,6 +91,27 @@ object AccountModule {
 
     @Singleton
     @Provides
+    fun provideCheckRoles(
+        service: OpenApiMainService,
+        cache: AccountDao,
+        serverMsgTranslator: ServerMsgTranslator
+    ): CheckDeleteRole {
+        return CheckDeleteRole(service, cache, serverMsgTranslator)
+    }
+
+
+    @Singleton
+    @Provides
+    fun provideDeleteRole(
+        service: OpenApiMainService,
+        cache: RoleDao,
+        serverMsgTranslator: ServerMsgTranslator
+    ): DeleteRole {
+        return DeleteRole(service, cache, serverMsgTranslator)
+    }
+
+    @Singleton
+    @Provides
     fun provideAllCompanies(
         service: OpenApiMainService,
         cache: CompanyDao,

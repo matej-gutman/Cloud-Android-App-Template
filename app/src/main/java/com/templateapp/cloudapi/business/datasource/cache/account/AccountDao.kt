@@ -48,6 +48,13 @@ interface AccountDao {
     ): List<AccountEntity>
 
 
+    @Query("""
+        SELECT * FROM account_properties
+        """)
+    suspend fun getDeleteRoleAccounts(
+    ): List<AccountEntity>
+
+
 }
 
 

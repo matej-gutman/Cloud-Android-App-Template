@@ -23,5 +23,10 @@ class SuccessHandling {
         const val SUCCESS_LOGOUT = "Logout success."
 
 
+        const val SUCCESS_200 = "Success"
+        const val SUCCESS_201 = "Success"
+        const val SUCCESS_ROLE_DELETED = "You have successfully deleted a role."
+
+
     }
 }

@@ -159,6 +159,8 @@
 
 
     <string name="pair_device" translatable="false">Pair new device</string>
+    <string name="manage_roles" translatable="false">Manage roles</string>
+    <string name="manage_companies" translatable="false">Manage companies</string>
     <string name="my_account" translatable="false">My account</string>
 
     <string name="fragment_settings" translatable="false">Settings</string>

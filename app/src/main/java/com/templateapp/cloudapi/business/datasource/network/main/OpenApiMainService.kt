@@ -121,6 +121,20 @@ interface OpenApiMainService {
         @Query("limit") limit: Int,
     ): UserListResponse
 
+    @GET(API+"/checkRoles/{id}")
+    suspend fun checkRole(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: String,
+    ): CheckRolesResponse
+
+
+    @GET(API+"/deleteRole/{id}")
+    suspend fun deleteRole(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: String,
+    ): DeleteRoleResponse
+
+
     @GET(API+"/roles")
     suspend fun getAllRoles(
         @Header("Authorization") authorization: String,

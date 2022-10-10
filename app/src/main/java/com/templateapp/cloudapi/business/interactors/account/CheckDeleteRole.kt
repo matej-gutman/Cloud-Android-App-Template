@@ -28,9 +28,9 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import java.lang.Exception
 
-class GetAllRoles(
+class CheckDeleteRole(
     private val service: OpenApiMainService,
-    private val cache: RoleDao,
+    private val cache: AccountDao,
     private val serverMsgTranslator: ServerMsgTranslator
 ) {
 
@@ -38,47 +38,55 @@ class GetAllRoles(
 
     fun execute(
         authToken: AuthToken?,
-    ): Flow<DataState<List<Role>>> = flow {
-        emit(DataState.loading<List<Role>>())
+        id: String,
+    ):Flow<DataState<Response>>  = flow {
+        emit(DataState.loading<Response>())
         if (authToken == null) {
             throw Exception(ERROR_AUTH_TOKEN_INVALID)
         }
-        // get Tasks from network
-        try { // catch network exception
-            val roles = service.getAllRoles(
-                "${authToken.token}",
-            ).roles.map { it.toRole() }
 
-            // Insert into cache
-           for (role in roles) {
-                try {
-                    cache.insert(role.toEntity())
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
-            val cachedUsers = cache.getAllRoles().map { it.toRole() }
+        // Update network
+        val response = service.checkRole(
+            authorization = authToken.token,
+            id=id
+        )
 
+        if(response.response == "200"){
+            emit(DataState.data<Response>(
+                data = Response(
+                    message = SuccessHandling.SUCCESS_200,
+                    uiComponentType = UIComponentType.None(),
+                    messageType = MessageType.Success(),
+                    users = response.users.map { it.toAccount() }
+                ),
+                response = null
+            ))
+        }else if(response.response == "201"){
+            emit(DataState.data<Response>(
+                data = Response(
+                    message = SuccessHandling.SUCCESS_201,
+                    uiComponentType = UIComponentType.None(),
+                    messageType = MessageType.Success(),
+                    users = response.users.map { it.toAccount() }
 
-            emit(DataState.data(response = null, data = cachedUsers))
-
-        } catch (e: Exception) {
-            emit(
-                DataState.error<List<Role>>(
-                    response = Response(
-                        message = "Unable get all roles.",
-                        uiComponentType = UIComponentType.None(),
-                        messageType = MessageType.Error()
-                    )
-                )
-            )
-            // load and check if tasks that are in cache are indeed present on the server
-
-
+                ),
+                response = null,
+            ))
+        }else{
+            throw Exception(ErrorHandling.ERROR_DELETING_ROLE)
         }
+
+        // Tell the UI it was successful
+        emit(DataState.data<Response>(
+            data = Response(
+                message = SuccessHandling.SUCCESS_PASSWORD_UPDATED,
+                uiComponentType = UIComponentType.None(),
+                messageType = MessageType.Success()
+            ),
+            response = null
+        ))
     }.catch { e ->
         emit(handleUseCaseException(e, serverMsgTranslator))
     }
 }
-
 

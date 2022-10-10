@@ -25,6 +25,8 @@ interface RoleDao {
         """)
     suspend fun getAllRoles(): List<RoleEntity>
 
+    @Query("DELETE FROM role_properties WHERE _id = :id")
+    suspend fun deleteRole(id: String)
 }
 
 

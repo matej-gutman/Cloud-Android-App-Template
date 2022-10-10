@@ -59,6 +59,7 @@ class ErrorHandling{
         const val UNKNOWN_ERROR = "Unknown error"
         const val ERROR_NOT_CWM_MEMBER = "You must become a member on Codingwithmitch.com to access the API. Visit https://codingwithmitch.com/enroll/"
 
+        const val ERROR_DELETING_ROLE = "You are not able to delete this role. "
 
         fun isNetworkError(msg: String): Boolean{
             when{

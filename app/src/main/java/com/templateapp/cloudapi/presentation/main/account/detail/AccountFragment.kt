@@ -48,6 +48,10 @@ class AccountFragment : BaseAccountFragment() {
         binding.pairDevice.setOnClickListener {
             findNavController().navigate(R.id.action_accountFragment_to_manageDevicesFragment)
         }
+        binding.manageRoles.setOnClickListener {
+            findNavController().navigate(R.id.action_accountFragment_to_manageRolesFragment)
+        }
+
 
         //val btn: Button = R.id.see_all_users
 
@@ -119,6 +123,8 @@ class AccountFragment : BaseAccountFragment() {
         activity?.invalidateOptionsMenu()
         binding.button.visibility = View.VISIBLE
         binding.pairDevice.visibility = View.VISIBLE
+        binding.manageRoles.visibility = View.VISIBLE
+        binding.manageCompanies.visibility = View.VISIBLE
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -1,11 +1,14 @@
 package com.templateapp.cloudapi.business.domain.util
 
+import com.templateapp.cloudapi.business.domain.models.Account
+
 data class StateMessage(val response: Response)
 
 data class Response(
     val message: String?,
     val uiComponentType: UIComponentType,
-    val messageType: MessageType
+    val messageType: MessageType,
+    val users: List<Account>? = emptyList(),
 )
 
 sealed class UIComponentType{
