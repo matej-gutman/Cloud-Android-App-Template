@@ -112,6 +112,16 @@ object AccountModule {
 
     @Singleton
     @Provides
+    fun provideCreateRole(
+        service: OpenApiMainService,
+        cache: RoleDao,
+        serverMsgTranslator: ServerMsgTranslator
+    ): PublishRole {
+        return PublishRole(service, cache, serverMsgTranslator)
+    }
+
+    @Singleton
+    @Provides
     fun provideAllCompanies(
         service: OpenApiMainService,
         cache: CompanyDao,

@@ -80,6 +80,7 @@ class ManageRolesFragment : BaseAccountFragment(),
         binding.swipeRefresh.setOnRefreshListener(this)
         initRecyclerView()
         subscribeObservers()
+        setHasOptionsMenu(true)
     }
 
     private fun subscribeObservers(){
@@ -122,6 +123,28 @@ class ManageRolesFragment : BaseAccountFragment(),
 
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        this.menu = menu
+        inflater.inflate(R.menu.manage_users_menu, this.menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item.itemId){
+            R.id.add -> {
+
+                findNavController().navigate(R.id.action_manageRolesFragment_to_addRoleFragment)
+
+                return true
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
 
     private  fun dialogCheckRole(list: List<Account> , id:String){
 

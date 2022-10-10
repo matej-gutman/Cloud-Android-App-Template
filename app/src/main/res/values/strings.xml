@@ -170,6 +170,9 @@
     <string name="please_authenticate" translatable="false">Please authenticate</string>
     <string name="api" translatable="false">/api</string>
 
+    <string name="role_title" translatable="false">Insert role title</string>
+    <string name="add_role" translatable="false">Add new role</string>
+    <string name="add" translatable="false">Add</string>
 
 
 </resources>

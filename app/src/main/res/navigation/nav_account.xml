@@ -51,7 +51,7 @@
             android:id="@+id/manageUsersFragment"
             android:name="com.templateapp.cloudapi.presentation.main.account.users.ManageUsersFragment"
             android:label="@string/fragment_manage_users"
-            tools:layout="@layout/fragment_manage_users1">
+            tools:layout="@layout/fragment_manage_users">
 
         <action android:id="@+id/action_manageUsersFragment_to_registerUserFragment"
                 app:destination="@id/registerFragment"
@@ -85,6 +85,18 @@
             android:name="com.templateapp.cloudapi.presentation.main.roles.ManageRolesFragment"
             android:label="@string/manage_roles"
             tools:layout="@layout/fragment_manage_roles">
+
+        <action android:id="@+id/action_manageRolesFragment_to_addRoleFragment"
+                app:destination="@id/addRoleFragment"
+                />
+
+    </fragment>
+
+    <fragment
+            android:id="@+id/addRoleFragment"
+            android:name="com.templateapp.cloudapi.presentation.main.roles.create.CreateRoleFragment"
+            android:label="@string/add_role"
+            tools:layout="@layout/fragment_create_role">
 
     </fragment>
 

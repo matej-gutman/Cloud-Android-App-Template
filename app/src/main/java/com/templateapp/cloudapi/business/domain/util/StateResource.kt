@@ -1,6 +1,7 @@
 package com.templateapp.cloudapi.business.domain.util
 
 import com.templateapp.cloudapi.business.domain.models.Account
+import com.templateapp.cloudapi.business.domain.models.Role
 
 data class StateMessage(val response: Response)
 
@@ -9,6 +10,7 @@ data class Response(
     val uiComponentType: UIComponentType,
     val messageType: MessageType,
     val users: List<Account>? = emptyList(),
+    val role: Role? = null,
 )
 
 sealed class UIComponentType{

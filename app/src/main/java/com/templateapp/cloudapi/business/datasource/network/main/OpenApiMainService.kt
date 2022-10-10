@@ -134,6 +134,13 @@ interface OpenApiMainService {
         @Path("id") id: String,
     ): DeleteRoleResponse
 
+    @GET(API+"/role/{title}")
+    suspend fun addRole(
+        @Header("Authorization") authorization: String,
+        @Path("title") title: String,
+    ): DeleteRoleResponse
+
+
 
     @GET(API+"/roles")
     suspend fun getAllRoles(

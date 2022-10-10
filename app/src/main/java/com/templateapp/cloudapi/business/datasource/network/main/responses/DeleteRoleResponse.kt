@@ -12,6 +12,8 @@ class DeleteRoleResponse (
     @SerializedName("response")
     val response: String,
 
+    @SerializedName("role")
+    val role: Role,
 )
 
 
