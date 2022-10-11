@@ -15,12 +15,14 @@ class CompanyDto(
     @SerializedName("title")
     val title: String,
 
+
+
 )
 
 fun CompanyDto.toCompany(): Company {
     return Company(
         _id = _id,
-       title = title
+       title = title,
     )
 }
 

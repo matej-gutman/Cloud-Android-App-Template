@@ -51,7 +51,9 @@ class AccountFragment : BaseAccountFragment() {
         binding.manageRoles.setOnClickListener {
             findNavController().navigate(R.id.action_accountFragment_to_manageRolesFragment)
         }
-
+        binding.manageCompanies.setOnClickListener {
+            findNavController().navigate(R.id.action_accountFragment_to_manageCompaniesFragment)
+        }
 
         //val btn: Button = R.id.see_all_users
 

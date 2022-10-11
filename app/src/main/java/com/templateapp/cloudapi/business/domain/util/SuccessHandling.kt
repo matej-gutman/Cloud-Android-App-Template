@@ -27,7 +27,9 @@ class SuccessHandling {
         const val SUCCESS_201 = "Success"
         const val SUCCESS_ROLE_DELETED = "You have successfully deleted a role."
 
+        const val SUCCESS_COMPANY_DELETED = "You have successfully deleted a company."
         const val SUCCESS_ROLE_CREATED = "created"
+        const val SUCCESS_COMPANY_CREATED = "created"
 
 
     }

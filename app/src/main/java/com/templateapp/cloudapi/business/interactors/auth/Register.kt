@@ -45,6 +45,9 @@ class Register(
 
         )
 
+        if(registerResponse.response == ErrorHandling.ERROR_EMAIL_ALREADY_EXISTS){
+            throw Exception(ErrorHandling.ERROR_EMAIL_ALREADY_EXISTS)
+        }
         registerResponse.response?.let {
             if(registerResponse.response != SuccessHandling.RESPONSE_REGISTRATION_MAIL_SENT){
                 throw Exception(ErrorHandling.ERROR_SENDING_MAIL)

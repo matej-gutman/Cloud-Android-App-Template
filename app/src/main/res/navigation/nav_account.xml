@@ -29,6 +29,10 @@
                 app:destination="@id/manageRolesFragment"
                 />
 
+        <action android:id="@+id/action_accountFragment_to_manageCompaniesFragment"
+                app:destination="@id/manageCompaniesFragment"
+                />
+
     </fragment>
 
     <fragment android:id="@+id/settingsFragment"
@@ -92,11 +96,34 @@
 
     </fragment>
 
+
+
+    <fragment
+            android:id="@+id/manageCompaniesFragment"
+            android:name="com.templateapp.cloudapi.presentation.main.companies.ManageCompaniesFragment"
+            android:label="@string/manage_companies"
+            tools:layout="@layout/fragment_manage_companies">
+
+        <action android:id="@+id/action_manageCompaniesFragment_to_addCompanyFragment"
+                app:destination="@id/addCompanyFragment"
+                />
+
+    </fragment>
+
     <fragment
             android:id="@+id/addRoleFragment"
             android:name="com.templateapp.cloudapi.presentation.main.roles.create.CreateRoleFragment"
             android:label="@string/add_role"
             tools:layout="@layout/fragment_create_role">
+
+    </fragment>
+
+
+    <fragment
+            android:id="@+id/addCompanyFragment"
+            android:name="com.templateapp.cloudapi.presentation.main.companies.create.CreateCompaniesFragment"
+            android:label="@string/add_company"
+            tools:layout="@layout/fragment_create_company">
 
     </fragment>
 

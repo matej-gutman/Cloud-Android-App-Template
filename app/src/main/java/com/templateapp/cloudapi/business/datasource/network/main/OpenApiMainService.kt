@@ -152,6 +152,27 @@ interface OpenApiMainService {
         @Header("Authorization") authorization: String,
     ): CompaniesResponse
 
+    @GET(API+"/checkCompanies/{id}")
+    suspend fun checkCompany(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: String,
+    ): CheckRolesResponse
+
+
+    @GET(API+"/deleteCompany/{id}")
+    suspend fun deleteCompany(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: String,
+    ): DeleteCompanyResponse
+
+    @GET(API+"/company/{title}")
+    suspend fun addCompany(
+        @Header("Authorization") authorization: String,
+        @Path("title") title: String,
+    ): DeleteCompanyResponse
+
+
+
 
     @GET(API+ "/all_devices")
     suspend fun getDevices(

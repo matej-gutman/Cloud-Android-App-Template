@@ -1,6 +1,7 @@
-package com.templateapp.cloudapi.business.interactors.account
+package com.templateapp.cloudapi.business.interactors.companies
 
 import com.templateapp.cloudapi.api.handleUseCaseException
+import com.templateapp.cloudapi.business.datasource.cache.account.CompanyDao
 import com.templateapp.cloudapi.business.datasource.cache.account.RoleDao
 import com.templateapp.cloudapi.business.datasource.cache.account.toEntity
 import com.templateapp.cloudapi.business.datasource.network.main.OpenApiMainService
@@ -18,9 +19,9 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import java.lang.Exception
 
-class PublishRole(
+class PublishCompany(
     private val service: OpenApiMainService,
-    private val cache: RoleDao,
+    private val cache: CompanyDao,
     private val serverMsgTranslator: ServerMsgTranslator
 ){
     private val TAG: String = "AppDebug"
@@ -34,7 +35,7 @@ class PublishRole(
             throw Exception(ERROR_AUTH_TOKEN_INVALID)
         }
         // attempt update
-        val createResponse = service.addRole(
+        val createResponse = service.addCompany(
             authToken.token,
             title = title,
         )
@@ -48,12 +49,12 @@ class PublishRole(
         }
 
         // insert the new task into the cache
-        cache.insert(createResponse.role.toEntity())
+        //cache.insert(createResponse.company.toEntity())
 
         // Tell the UI it was successful
         emit(DataState.data<Response>(
             data = Response(
-                message = SuccessHandling.SUCCESS_ROLE_CREATED,
+                message = SuccessHandling.SUCCESS_COMPANY_CREATED,
                 uiComponentType = UIComponentType.None(),
                 messageType = MessageType.Success()
             ),

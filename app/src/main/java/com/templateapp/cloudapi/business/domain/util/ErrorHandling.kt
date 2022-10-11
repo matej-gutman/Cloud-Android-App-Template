@@ -60,6 +60,10 @@ class ErrorHandling{
         const val ERROR_NOT_CWM_MEMBER = "You must become a member on Codingwithmitch.com to access the API. Visit https://codingwithmitch.com/enroll/"
 
         const val ERROR_DELETING_ROLE = "You are not able to delete this role. "
+        const val ERROR_DELETING_COMPANY = "You are not able to delete this company. "
+        const val ERROR_NAME_ALREADY_EXISTS= "Name already exists."
+
+        const val ERROR_EMAIL_ALREADY_EXISTS= "Email already exists."
 
         fun isNetworkError(msg: String): Boolean{
             when{

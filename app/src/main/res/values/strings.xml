@@ -175,6 +175,9 @@
     <string name="add" translatable="false">Add</string>
 
 
+    <string name="company_title" translatable="false">Insert company title</string>
+    <string name="add_company" translatable="false">Add new company</string>
+    <string name="company" translatable="false">Company</string>
 </resources>
 
 

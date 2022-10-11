@@ -25,6 +25,8 @@ interface CompanyDao {
         """)
     suspend fun getAllCompanies(): List<CompanyEntity>
 
+    @Query("DELETE FROM company_properties WHERE _id = :id")
+    suspend fun deleteCompany(id: String)
 }
 
 

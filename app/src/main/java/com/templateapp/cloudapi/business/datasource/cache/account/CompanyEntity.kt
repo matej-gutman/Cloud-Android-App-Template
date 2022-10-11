@@ -21,6 +21,7 @@ data class CompanyEntity(
     val title: String,
 
 
+
     )
 
 
@@ -28,6 +29,7 @@ fun CompanyEntity.toCompany(): Company {
     return Company(
         _id = _id,
         title = title,
+
     )
 }
 
@@ -35,5 +37,6 @@ fun Company.toEntity(): CompanyEntity {
     return CompanyEntity(
         _id = _id,
         title = title,
+
     )
 }

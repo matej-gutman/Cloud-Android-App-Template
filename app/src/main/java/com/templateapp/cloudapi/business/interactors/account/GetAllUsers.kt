@@ -44,11 +44,14 @@ class GetAllUsers(
         if (authToken == null) {
             throw Exception(ERROR_AUTH_TOKEN_INVALID)
         }
+
         // get Tasks from network
         try { // catch network exception
-
+/*
             var keepSearching = true;
             while(keepSearching){
+
+                println("uuuuuu")
                 val cachedUsers = cache.getAllAccounts(
                     page = page
                  )
@@ -56,17 +59,20 @@ class GetAllUsers(
 
                 // println(cachedUsers)
 
+                println("lllll")
 
                 // Stop searching once no tasks were deleted from the cache, as they all appear to be also on the server.
-                if(cachedUsersSize == cachedUsers.size)
-                    keepSearching = false;
+               /* if(cachedUsersSize == cachedUsers.size)
+                    keepSearching = false;*/
             }
 
+            println("ttttttttt")
             // Return cache to the caller
             val cachedUsers = cache.getAllAccounts(
                 page = page
             ).map { it.toAccount() }
 
+            println("dddsdfsf")
 
             for(cachedUser in cachedUsers) {
                 try { // try to load each task and check if it exists on the server
@@ -82,6 +88,8 @@ class GetAllUsers(
                          cache.deleteAccount(cachedUser._id)
                      }*/
                 } catch (e: Exception) {
+
+                    println("dddddddddd")
                     emit(
                         DataState.error<List<Account>>(
                             response = Response(
@@ -93,7 +101,13 @@ class GetAllUsers(
                     )
                 }
             }
+*/
 
+       /*     val cachedUsers = cache.getAllAccounts(
+                page = page
+            ).map { it.toAccount() }
+
+            println(cachedUsers)*/
             val users = service.getAllUsers(
                 "${authToken.token}",
                 skip = (page - 1) * Constants.PAGINATION_PAGE_SIZE,
@@ -101,9 +115,12 @@ class GetAllUsers(
             ).results.map { it.toAccount() }
 
             // Insert into cache
-            for (task in users) {
+            for (user in users) {
                 try {
-                    cache.insert(task.toEntity())
+                    if(cache.searchByEmail(user.email)==null) {
+                        println("lalalalla")
+                        cache.insert(user.toEntity())
+                    }
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
