@@ -60,14 +60,11 @@ class ChangeAccount(
         }
 
 
+
         // update cache
-        cache.changeAccount(
+       val res =  cache.deleteAccount(
             id = _id,
-            email = email,
-            username = username,
-            age = age,
-            enabled = enabled,
-            role = role
+
         )
 
         // Tell the UI it was successful

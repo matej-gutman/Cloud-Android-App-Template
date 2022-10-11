@@ -23,6 +23,8 @@ class GetAccountFromCache(
         // emit from cache
         val cachedAccount = cache.searchByPk(_id)?.toAccount()
 
+        println("fkdnfksjd")
+        println(cachedAccount)
         if(cachedAccount == null){
             throw Exception(ErrorHandling.ERROR_UNABLE_TO_RETRIEVE_ACCOUNT_DETAILS)
         }

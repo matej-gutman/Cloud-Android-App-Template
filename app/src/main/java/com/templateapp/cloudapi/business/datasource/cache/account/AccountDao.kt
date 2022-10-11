@@ -38,6 +38,9 @@ interface AccountDao {
     @Query("DELETE FROM account_properties WHERE _id = :id")
     suspend fun deleteAccount(id: String)
 
+    @Query("DELETE FROM account_properties")
+    suspend fun clearAccounts()
+
     @Query("""
         SELECT * FROM account_properties
         LIMIT (:page * :pageSize)

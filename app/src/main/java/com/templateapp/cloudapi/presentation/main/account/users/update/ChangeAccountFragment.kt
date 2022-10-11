@@ -174,6 +174,7 @@ class ChangeAccountFragment : BaseAccountFragment() {
         val username = binding.username.text.toString()
         var age = binding.age.text.toString()
         val enabled = binding.enabled.text.toString()
+        val role = binding.roleSpinner.selectedItem.toString()
         viewModel.onTriggerEvent(ChangeAccountEvents.OnUpdateEmail(email))
         viewModel.onTriggerEvent(ChangeAccountEvents.OnUpdateUsername(username))
         if(binding.age.text.toString() == ""){
@@ -181,6 +182,7 @@ class ChangeAccountFragment : BaseAccountFragment() {
         }
         viewModel.onTriggerEvent(ChangeAccountEvents.OnUpdateAge(Integer.parseInt(age)))
         viewModel.onTriggerEvent(ChangeAccountEvents.OnUpdateEnabled(Boolean.equals(enabled)))
+       // viewModel.onTriggerEvent(ChangeAccountEvents.OnUpdateRole(Boolean.equals(role)))
     }
 
     override fun onPause() {

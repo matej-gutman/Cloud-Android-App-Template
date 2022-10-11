@@ -108,6 +108,8 @@ class GetAllUsers(
             ).map { it.toAccount() }
 
             println(cachedUsers)*/
+                cache.clearAccounts();
+
             val users = service.getAllUsers(
                 "${authToken.token}",
                 skip = (page - 1) * Constants.PAGINATION_PAGE_SIZE,
@@ -115,17 +117,18 @@ class GetAllUsers(
             ).results.map { it.toAccount() }
 
             // Insert into cache
+
+
             for (user in users) {
                 try {
                     if(cache.searchByEmail(user.email)==null) {
-                        println("lalalalla")
+
                         cache.insert(user.toEntity())
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
-
             emit(DataState.data(response = null, data = users))
 
         } catch (e: Exception) {
