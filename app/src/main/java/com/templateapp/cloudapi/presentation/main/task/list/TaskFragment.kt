@@ -67,25 +67,25 @@ class TaskFragment : BaseTaskFragment(),
     }
 
     private fun subscribeObservers(){
-        viewModel.state.observe(viewLifecycleOwner, { state ->
+        viewModel.state.observe(viewLifecycleOwner) { state ->
 
-           // uiCommunicationListener.displayProgressBar(state.isLoading)
+            // uiCommunicationListener.displayProgressBar(state.isLoading)
 
             processQueue(
                 context = context,
                 queue = state.queue,
-                stateMessageCallback = object: StateMessageCallback {
+                stateMessageCallback = object : StateMessageCallback {
                     override fun removeMessageFromStack() {
                         viewModel.onTriggerEvent(TaskEvents.OnRemoveHeadFromQueue)
                     }
                 })
             recyclerAdapter?.apply {
                 submitList(tasksList = state.tasksList)
-                getAuth( viewModel.sessionManager.state.value?.authToken)
+                getAuth(viewModel.sessionManager.state.value?.authToken)
             }
 
 
-        })
+        }
     }
 
     private fun initSearchView(){
