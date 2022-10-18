@@ -193,7 +193,7 @@ class ManageRolesFragment : BaseAccountFragment(),
 
 
     private fun initRecyclerView(){
-        binding.taskRecyclerview.apply {
+        binding.deviceRecyclerview.apply {
             layoutManager = LinearLayoutManager(this@ManageRolesFragment.context)
             val topSpacingDecorator = TopSpacingItemDecoration(10)
             removeItemDecoration(topSpacingDecorator) // does nothing if not applied already

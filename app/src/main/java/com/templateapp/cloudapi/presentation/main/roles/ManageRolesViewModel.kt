@@ -10,7 +10,6 @@ import kotlinx.coroutines.*
 import androidx.lifecycle.viewModelScope
 import com.templateapp.cloudapi.business.domain.util.*
 import com.templateapp.cloudapi.business.interactors.account.*
-import com.templateapp.cloudapi.business.interactors.auth.GetDevice
 import com.templateapp.cloudapi.presentation.main.account.detail.AccountState
 import com.templateapp.cloudapi.presentation.main.create_task.CreateTaskEvents
 import com.templateapp.cloudapi.presentation.main.task.list.TaskEvents
